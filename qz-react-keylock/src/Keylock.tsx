@@ -54,7 +54,7 @@ export const Keylock = (props: {
           {props.selectedNumber.split('').map((n, i) => (
             <KeylockNumberSet
               size={props.size ?? 'medium'}
-              readonly={props.readonly}
+              readonly={props.readonly ?? false}
               key={i}
               position={i + 1}
               selectedNumber={parseInt(n)}
