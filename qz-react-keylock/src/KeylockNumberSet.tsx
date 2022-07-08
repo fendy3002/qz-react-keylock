@@ -9,6 +9,10 @@ const number = [8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2];
 const oneLoopHeight = (size: 'small' | 'medium') => oneNumberHeight(size) * 10;
 const offsetNumber = 2;
 
+const getCurrentStyleTop = (current: any) => {
+  return parseInt(current.style.top.replace('px', ''));
+};
+
 export const KeylockNumberSet = (props: {
   position: number;
   size: 'small' | 'medium';
@@ -19,11 +23,11 @@ export const KeylockNumberSet = (props: {
   const containerRef = useRef(null);
   const startMove = () => {
     const current = containerRef.current as any;
-    current.startTop = parseInt(current.style.top.replace('px', ''));
+    current.startTop = getCurrentStyleTop(current);
   };
   const endMove = () => {
     const current = containerRef.current as any;
-    const currentTop = parseInt(current.style.top.replace('px', ''));
+    const currentTop = getCurrentStyleTop(current);
     let currentlySelectedNumber =
       (10 - offsetNumber + Math.abs(currentTop) / oneNumberHeight(props.size)) %
       10;
@@ -43,7 +47,10 @@ export const KeylockNumberSet = (props: {
     if (topAfterMove > 0) {
       topAfterMove -= oneLoopHeight(props.size);
     }
-    current.style.top = `${topAfterMove}px`;
+
+    if (Math.abs(getCurrentStyleTop(current) - topAfterMove) > 1) {
+      current.style.top = `${topAfterMove}px`;
+    }
   };
   useEffect(() => {
     if (containerRef.current) {

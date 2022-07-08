@@ -29,15 +29,15 @@ function App() {
       </div>
       <div style={{}}>
         <Keylock
-          readonly={true}
+          readonly={selectedNumber == '000000'}
           selectedNumber={selectedNumber}
           onChange={setSelectedNumber}
         />
 
         <Keylock
+          readonly={true}
           size="small"
           selectedNumber={selectedNumber}
-          readonly={selectedNumber == '000000'}
           onChange={setSelectedNumber}
         />
       </div>

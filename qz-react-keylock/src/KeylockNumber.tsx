@@ -1,6 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import { oneNumberHeightCss } from './oneNumberHeight';
 
+const generateAnimationStep =
+  (current: any, props: any, evt: any) => (timestamp) => {
+    if (!current._animationStartTs) {
+      current._animationStartTs = timestamp;
+    }
+    const elapsed = timestamp - current._animationStartTs;
+
+    if (elapsed < 200) {
+      current.animationId = window.requestAnimationFrame(
+        generateAnimationStep(current, props, evt),
+      );
+    } else {
+      current.animationId = null;
+      props.moveY(
+        current.cursorY - (evt.clientY ?? evt.touches?.[0]?.clientY ?? 0),
+      );
+    }
+  };
+
 export const KeylockNumber = (props: {
   position: number;
   size: 'small' | 'medium';
@@ -20,8 +39,10 @@ export const KeylockNumber = (props: {
 
       const mouseDownHandler = (evt: any) => {
         if (!props.readonly) {
+          evt.preventDefault();
+          evt.stopPropagation();
           current.isGrabbing = true;
-          current.cursorY = evt.clientY ?? evt.touches[0].clientY;
+          current.cursorY = evt.clientY ?? evt.touches?.[0]?.clientY ?? 0;
           props.startMove();
         }
       };
@@ -37,11 +58,17 @@ export const KeylockNumber = (props: {
       window.addEventListener('mouseup', mouseUpHandler);
       window.addEventListener('touchend', mouseUpHandler);
 
+      current.animationId = null;
       const mouseMoveHandler = (evt: any) => {
         if (current.isGrabbing) {
-          props.moveY(
-            current.cursorY - (evt.clientY ?? evt.touches[0].clientY ?? 0),
-          );
+          if (!current.animationId) {
+            current.animationId = window.requestAnimationFrame(
+              generateAnimationStep(current, props, evt),
+            );
+          }
+
+          evt.preventDefault();
+          return false;
         }
       };
       window.addEventListener('mousemove', mouseMoveHandler);
@@ -69,6 +96,7 @@ export const KeylockNumber = (props: {
         userSelect: 'none',
         borderBottom: '1px #DDD solid',
         borderTop: '1px #DDD solid',
+        touchAction: 'none',
       }}
     >
       <label
