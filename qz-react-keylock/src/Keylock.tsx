@@ -4,7 +4,7 @@ import { oneNumberHeight } from './oneNumberHeight';
 
 export const Keylock = (props: {
   selectedNumber: string;
-  readonly: boolean;
+  readonly?: boolean;
   onChange: (newNumber: string) => void;
   size?: 'small' | 'medium';
 }) => {

@@ -1,9 +1,10 @@
 {
   "name": "@fendy3002/qz-react-keylock",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/index.js",
   "files": [
     "dist/**/*",
     "src/**/*"
