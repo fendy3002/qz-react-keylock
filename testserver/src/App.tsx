@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
+import { Keylock } from '@fendy3002/qz-react-keylock/dist';
+
 import './App.css';
-import { Keylock } from './lib';
 
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
