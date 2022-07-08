@@ -4,6 +4,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist/**/*",
+    "src/**/*"
+  ],
   "scripts": {
     "build": "rm -rf ./dist && npm run tsc",
     "tsc": "tsc",
