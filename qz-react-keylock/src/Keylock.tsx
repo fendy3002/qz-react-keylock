@@ -49,6 +49,7 @@ export const Keylock = (props: {
             height: `${oneNumberHeight(props.size ?? 'medium')}px`,
             overflow: 'hidden',
             position: 'relative',
+            color: props.readonly ? `#AAAAAA` : 'inherit',
           }}
         >
           {props.selectedNumber.split('').map((n, i) => (

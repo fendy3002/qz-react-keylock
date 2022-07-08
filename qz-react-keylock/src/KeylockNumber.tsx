@@ -52,7 +52,7 @@ export const KeylockNumber = (props: {
     <div
       ref={containerRef}
       style={{
-        cursor: 'grab',
+        cursor: props.readonly ? 'default' : 'grab',
         width: props.size == 'small' ? '40px' : '80px',
         textAlign: 'center',
         userSelect: 'none',
@@ -62,7 +62,7 @@ export const KeylockNumber = (props: {
     >
       <label
         style={{
-          cursor: 'grab',
+          cursor: props.readonly ? 'default' : 'grab',
         }}
       >
         {props.number}

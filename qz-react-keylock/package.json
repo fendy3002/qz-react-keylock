@@ -1,6 +1,6 @@
 {
   "name": "@fendy3002/qz-react-keylock",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -10,9 +10,10 @@
     "src/**/*"
   ],
   "scripts": {
-    "build": "rm -rf ./dist && npm run tsc",
+    "build": "npm run tsc",
+    "rebuild": "rm -rf ./dist && npm run tsc",
     "tsc": "tsc",
-    "prepare": "npm run build",
+    "prepare": "npm run rebuild",
     "test": "echo \"\""
   },
   "dependencies": {
