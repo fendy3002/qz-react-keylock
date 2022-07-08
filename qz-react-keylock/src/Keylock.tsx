@@ -2,6 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import { KeylockNumberSet } from './KeylockNumberSet';
 import { oneNumberHeight } from './oneNumberHeight';
 
+import styled from 'styled-components';
+const ContainerDiv = styled.div`
+  display: inline-block;
+  border-top: 8px #e9e9e9 solid;
+  border-bottom: 8px #e9e9e9 solid;
+  border-left: 16px #e9e9e9 solid;
+  border-right: 16px #e9e9e9 solid;
+  font-family: 'Droid Sans Mono', 'Courier New', monospace;
+`;
+
 export const Keylock = (props: {
   selectedNumber: string;
   readonly?: boolean;
@@ -30,22 +40,12 @@ export const Keylock = (props: {
   };
   return (
     <>
-      <div
-        style={{
-          display: 'inline-block',
-          borderTop: '8px #E9E9E9 solid',
-          borderBottom: '8px #E9E9E9 solid',
-          borderLeft: '16px #E9E9E9 solid',
-          borderRight: '16px #E9E9E9 solid',
-        }}
-        ref={containerRef}
-      >
+      <ContainerDiv ref={containerRef}>
         <div
           style={{
             paddingTop: '8px',
             paddingBottom: '8px',
             display: 'flex',
-            fontFamily: 'Courier New',
             height: `${oneNumberHeight(props.size ?? 'medium')}px`,
             overflow: 'hidden',
             position: 'relative',
@@ -63,7 +63,7 @@ export const Keylock = (props: {
             />
           ))}
         </div>
-      </div>
+      </ContainerDiv>
     </>
   );
 };
