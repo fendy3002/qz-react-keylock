@@ -1,6 +1,6 @@
 {
   "name": "@fendy3002/qz-react-keylock",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
